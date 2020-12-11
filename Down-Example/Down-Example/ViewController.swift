@@ -30,40 +30,69 @@ private extension ViewController {
         }
         
         do {
-            let downView = try DownView(frame: view.bounds, markdownString: readMeContents, didLoadSuccessfully: {
+
+            let downLabel = DownLabel(markDown: readMeContents)
+            downLabel.translatesAutoresizingMaskIntoConstraints = false
+            downLabel.numberOfLines = 0
+
+            let downView = try DownView(frame: .zero, markdownString: readMeContents, didLoadSuccessfully: {
                 print("Markdown was rendered.")
             })
             downView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(downView)
-            constrain(subview: downView)
-            createStatusBarBackgrounds(above: downView)
+
+            let header = UILabel()
+            header.translatesAutoresizingMaskIntoConstraints = false
+            header.text = "Our custom content above the markdown"
+            header.backgroundColor = .yellow
+            header.heightAnchor.constraint(equalToConstant: 100).isActive = true
+
+            let footer = UILabel()
+            footer.translatesAutoresizingMaskIntoConstraints = false
+            footer.text = "Our custom content below the mardown"
+            footer.backgroundColor = .yellow
+            footer.heightAnchor.constraint(equalToConstant: 100).isActive = true
+
+            let stack = UIStackView(arrangedSubviews: [header, downLabel, downView, footer])
+            stack.axis = .vertical
+            stack.translatesAutoresizingMaskIntoConstraints = false
+
+            let outerScroll = UIScrollView()
+            outerScroll.translatesAutoresizingMaskIntoConstraints = false
+
+            view.addSubview(outerScroll)
+            outerScroll.addSubview(stack)
+
+
+            NSLayoutConstraint.activate([
+                view.safeAreaLayoutGuide.topAnchor.constraint(equalTo: outerScroll.topAnchor),
+                view.safeAreaLayoutGuide.leftAnchor.constraint(equalTo: outerScroll.leftAnchor),
+                view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: outerScroll.bottomAnchor),
+                view.safeAreaLayoutGuide.rightAnchor.constraint(equalTo: outerScroll.rightAnchor),
+                downView.widthAnchor.constraint(equalTo: outerScroll.widthAnchor)
+            ])
+
+            NSLayoutConstraint.activate([
+                outerScroll.topAnchor.constraint(equalTo: stack.topAnchor),
+                outerScroll.leftAnchor.constraint(equalTo: stack.leftAnchor),
+                outerScroll.bottomAnchor.constraint(equalTo: stack.bottomAnchor),
+                outerScroll.rightAnchor.constraint(equalTo: stack.rightAnchor)
+            ])
+
+            downView.scrollView.isScrollEnabled = false
+
+            // Perhaps try value-observing the contentSize if possible, rather than assume a delay is enough
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                downView.heightAnchor.constraint(equalToConstant: downView.scrollView.contentSize.height).isActive = true
+            }
         } catch {
             showError(message: error.localizedDescription)
         }
     }
-    
-    func createStatusBarBackgrounds(above subview: UIView) {
-        let blurEffect = UIBlurEffect(style: .prominent)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(blurEffectView, aboveSubview: subview)
-        constrain(subview: blurEffectView, bottomAnchor: topLayoutGuide.bottomAnchor)
-    }
-    
-    func constrain(subview: UIView, bottomAnchor: NSLayoutYAxisAnchor? = nil) {
-        NSLayoutConstraint.activate([
-            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            subview.topAnchor.constraint(equalTo: topLayoutGuide.topAnchor),
-            subview.bottomAnchor.constraint(equalTo: bottomAnchor ?? bottomLayoutGuide.bottomAnchor)
-        ])
-    }
-    
+
     func showError(message: String) {
         let alertController = UIAlertController(title: "DownView Render Error",
                                                 message: message,
                                                 preferredStyle: .alert)
         self.present(alertController, animated: true, completion: nil)
     }
-    
 }

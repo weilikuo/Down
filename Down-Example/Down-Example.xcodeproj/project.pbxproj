@@ -20,6 +20,7 @@
 		8A07D7D81F085EC6004D7141 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7D61F085EC6004D7141 /* Main.storyboard */; };
 		8A07D7DA1F085EC6004D7141 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7D91F085EC6004D7141 /* Assets.xcassets */; };
 		8A07D7DD1F085EC6004D7141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A07D7DB1F085EC6004D7141 /* LaunchScreen.storyboard */; };
+		D2E83A352582E38A0016CE6B /* DownLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E83A342582E38A0016CE6B /* DownLabel.swift */; };
 		D4591E9C226D293F00EBD476 /* Down.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; };
 		D4591E9D226D293F00EBD476 /* Down.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D49980B51FA560F8004EE42E /* Down.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		8A07D7D91F085EC6004D7141 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A07D7DC1F085EC6004D7141 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A07D7DE1F085EC6004D7141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2E83A342582E38A0016CE6B /* DownLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownLabel.swift; sourceTree = "<group>"; };
 		D49980AF1FA560F8004EE42E /* Down.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Down.xcodeproj; path = ../Down.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +183,7 @@
 				8A07D7D21F085EC6004D7141 /* AppDelegate.swift */,
 				8A07D7D41F085EC6004D7141 /* ViewController.swift */,
 				8A07D7D61F085EC6004D7141 /* Main.storyboard */,
+				D2E83A342582E38A0016CE6B /* DownLabel.swift */,
 				8A07D7D91F085EC6004D7141 /* Assets.xcassets */,
 				8A07D7DB1F085EC6004D7141 /* LaunchScreen.storyboard */,
 				8A07D7DE1F085EC6004D7141 /* Info.plist */,
@@ -246,7 +249,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = Down;
 				TargetAttributes = {
 					14090A482185411800503C06 = {
@@ -354,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A07D7D51F085EC6004D7141 /* ViewController.swift in Sources */,
+				D2E83A352582E38A0016CE6B /* DownLabel.swift in Sources */,
 				8A07D7D31F085EC6004D7141 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +484,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -504,7 +509,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -541,6 +546,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -559,7 +565,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -580,7 +586,7 @@
 					"$(PROJECT_DIR)/Down-Example",
 				);
 				INFOPLIST_FILE = "Down-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -600,7 +606,7 @@
 					"$(PROJECT_DIR)/Down-Example",
 				);
 				INFOPLIST_FILE = "Down-Example/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.downMarkdown.Down-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
