@@ -22,20 +22,17 @@ final class ViewController: UIViewController {
 private extension ViewController {
     
     func renderDownInWebView() {
-        guard let readMeURL = Bundle.main.url(forResource: nil, withExtension: "md"),
-              let readMeContents = try? String(contentsOf: readMeURL)
-            else {
-                showError(message: "Could not load readme contents.")
-                return
-        }
-        
+        let markDown = """
+        ### Material Number\n99350098006\n\n### Ecomm Handle (en-GLOBAL)\nvitamin-c-serum\n\n### Ecomm Variant SKU (en-GLOBAL)\nKS104\n\n## CONTENT\n\n### Ecomm Title (en-GLOBAL)\nVitamin C Serum\n\n### Ecomm Description (en-GLOBAL)\nOur Vitamin C Serum is packed with ingredients that penetrate the skin to help brighten and help improve overall skin health.\n\n## SIZE\n12 fl oz / 40 ml\n\n## USAGE\nUse product in the morning and night\nApply a single pump each morning and evening to face.\n\n## KEY FEATURES\n- **Vitamin C:** Helps brighten and improve the appearance of dull skin\n- **Camellia Oleifera Leaf:** Antioxidant\n- **Fragrance-Free**\n\n## INGREDIENTS\nWater/Aqua/Eau, Tetrahexyldecyl Ascorbate, Glycerin, Phenoxyethanol, Carthamus Tinctorius (Safflower) Seed Oil, Ammonium Acryloyldimethyltaurate/VP Copolymer, Dipalmitoyl Hydroxyproline, Tocopheryl Acetate, Tetrasodium Glutamate Diacetate, Carbomer, Polysorbate 20, Sodium Metabisulfite, Panthenol, Ferulic Acid, Ethylhexylglycerin, Sodium Hydroxide, Camellia Sinensis Leaf Extract
+        """
+
         do {
 
-            let downLabel = DownLabel(markDown: readMeContents)
+            let downLabel = DownLabel(markDown: markDown)
             downLabel.translatesAutoresizingMaskIntoConstraints = false
             downLabel.numberOfLines = 0
 
-            let downView = try DownView(frame: .zero, markdownString: readMeContents, didLoadSuccessfully: {
+            let downView = try DownView(frame: .zero, markdownString: markDown, didLoadSuccessfully: {
                 print("Markdown was rendered.")
             })
             downView.translatesAutoresizingMaskIntoConstraints = false
